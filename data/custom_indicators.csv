@@ -1,0 +1,13 @@
+City,Country,Indicator_Name,Description,Value,Unit,Source,Category,Data_Entry_Date
+Copenhagen,Not specified,S,S,10.0,s,s,Environmental,2025-07-28T22:34:02.325679
+Singapore,Not specified,S,D,110.0,D,D,Environmental,2025-07-28T22:34:27.438510
+Vancouver,Not specified,S,c,51.0,w,we,Environmental,2025-07-28T22:34:40.371963
+Amsterdam,Not specified,S,d,32.0,c,d,Environmental,2025-07-28T22:34:53.902956
+Copenhagen,Not specified,A,s,2.0,s,d,Environmental,2025-07-28T22:35:22.033711
+Singapore,Not specified,A,a,1.0,a,a,Environmental,2025-07-28T22:35:48.569559
+Vancouver,Not specified,A,c,5.0,c,c,Environmental,2025-07-28T22:38:05.985254
+Amsterdam,Not specified,A,c,10.0,c,c,Environmental,2025-07-28T22:38:18.117146
+Copenhagen,Not specified,Air Quality,Air,98.0,%,WHO,Social,2025-08-04T16:04:36.611566
+Singapore,Not specified,Air Quality,Air,20.0,%,WHO,Social,2025-08-04T16:05:12.091293
+Vancouver,Not specified,Air Quality,Air Quality,67.0,30,WHO,Social,2025-08-04T16:05:45.778305
+Amsterdam,Not specified,Air Quality,Air Quality,87.0,%,WHO,Social,2025-08-04T16:06:23.484408
