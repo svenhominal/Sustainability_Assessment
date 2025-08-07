@@ -345,25 +345,26 @@ def show_custom_weighted_ranking(indicators_data):
     
     weights = {}
     
-    # Create sliders for each indicator
+    # Create sliders for each indicator (without expanders since we're already in one)
     for indicator in available_indicators:
         sample = indicators_data[indicators_data['Indicator_Name'] == indicator].iloc[0]
         
-        with st.expander(f"⚖️ {indicator}", expanded=False):
-            st.write(f"**Description:** {sample['Description']}")
-            st.write(f"**Unit:** {sample['Unit']}")
-            st.write(f"**Category:** {sample.get('Category', 'Not specified')}")
-            
-            weight = st.slider(
-                f"Weight for {indicator}",
-                min_value=0.0,
-                max_value=10.0,
-                value=5.0,
-                step=0.1,
-                key=f"weight_{indicator}",
-                help="Higher weight = more important in final ranking"
-            )
-            weights[indicator] = weight
+        st.markdown(f"**⚖️ {indicator}**")
+        st.write(f"**Description:** {sample['Description']}")
+        st.write(f"**Unit:** {sample['Unit']}")
+        st.write(f"**Category:** {sample.get('Category', 'Not specified')}")
+        
+        weight = st.slider(
+            f"Weight for {indicator}",
+            min_value=0.0,
+            max_value=10.0,
+            value=5.0,
+            step=0.1,
+            key=f"weight_{indicator}",
+            help="Higher weight = more important in final ranking"
+        )
+        weights[indicator] = weight
+        st.markdown("---")  # Visual separator
     
     # Calculate weighted scores
     if st.button("🏆 Calculate Weighted Ranking"):
@@ -389,20 +390,20 @@ def show_custom_weighted_ranking(indicators_data):
             )
             st.plotly_chart(fig, use_container_width=True)
             
-            # Show weight distribution
-            with st.expander("⚖️ Weight Distribution", expanded=False):
-                weight_df = pd.DataFrame(list(weights.items()), columns=['Indicator', 'Weight'])
-                weight_df = weight_df[weight_df['Weight'] > 0].sort_values('Weight', ascending=False)
-                
-                if not weight_df.empty:
-                    fig_weights = px.bar(
-                        weight_df,
-                        x='Indicator',
-                        y='Weight',
-                        title="Assigned Weights by Indicator"
-                    )
-                    fig_weights.update_layout(xaxis_tickangle=-45)
-                    st.plotly_chart(fig_weights, use_container_width=True)
+            # Show weight distribution (without expander since we're already in one)
+            st.markdown("**⚖️ Weight Distribution:**")
+            weight_df = pd.DataFrame(list(weights.items()), columns=['Indicator', 'Weight'])
+            weight_df = weight_df[weight_df['Weight'] > 0].sort_values('Weight', ascending=False)
+            
+            if not weight_df.empty:
+                fig_weights = px.bar(
+                    weight_df,
+                    x='Indicator',
+                    y='Weight',
+                    title="Assigned Weights by Indicator"
+                )
+                fig_weights.update_layout(xaxis_tickangle=-45)
+                st.plotly_chart(fig_weights, use_container_width=True)
         else:
             st.warning("⚠️ Unable to calculate weighted scores.")
 

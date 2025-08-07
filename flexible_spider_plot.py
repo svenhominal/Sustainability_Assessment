@@ -137,14 +137,14 @@ def show_custom_city_comparison_spider(indicators_data):
     if fig:
         st.plotly_chart(fig, use_container_width=True)
         
-        # Show data table
-        with st.expander("📊 Data Used in Spider Plot", expanded=False):
-            comparison_data = indicators_data[
-                (indicators_data['City'].isin(selected_cities)) &
-                (indicators_data['Indicator_Name'].isin(selected_indicators))
-            ]
-            pivot_data = comparison_data.pivot(index='City', columns='Indicator_Name', values='Value')
-            st.dataframe(pivot_data, use_container_width=True)
+        # Show data table (without expander since we're already in one)
+        st.markdown("**📊 Data Used in Spider Plot:**")
+        comparison_data = indicators_data[
+            (indicators_data['City'].isin(selected_cities)) &
+            (indicators_data['Indicator_Name'].isin(selected_indicators))
+        ]
+        pivot_data = comparison_data.pivot(index='City', columns='Indicator_Name', values='Value')
+        st.dataframe(pivot_data, use_container_width=True)
 
 def show_custom_category_spider(indicators_data):
     """Show spider plots organized by indicator categories"""
@@ -221,11 +221,13 @@ def show_custom_selected_indicators_spider(indicators_data):
     
     if len(selected_indicators) >= 3 and len(selected_cities) >= 1:
         
-        # Show indicator details
-        with st.expander("📋 Selected Indicators Details", expanded=False):
-            for indicator in selected_indicators:
-                indicator_info = indicators_data[indicators_data['Indicator_Name'] == indicator].iloc[0]
-                st.write(f"**{indicator}:** {indicator_info['Description']} ({indicator_info['Unit']})")
+        # Show indicator details (without expander since we're already in one)
+        st.markdown("**📋 Selected Indicators Details:**")
+        for indicator in selected_indicators:
+            indicator_info = indicators_data[indicators_data['Indicator_Name'] == indicator].iloc[0]
+            st.write(f"**{indicator}:** {indicator_info['Description']} ({indicator_info['Unit']})")
+        
+        st.markdown("---")  # Visual separator
         
         # Create spider plot
         fig = create_custom_spider_plot(indicators_data, selected_cities, selected_indicators)
@@ -277,9 +279,9 @@ def show_custom_overview_spider(indicators_data):
     if fig:
         st.plotly_chart(fig, use_container_width=True)
         
-        # Show ranking based on total area
-        with st.expander("🏆 Performance Ranking", expanded=False):
-            calculate_spider_ranking(indicators_data, all_cities, selected_indicators)
+        # Show ranking based on total area (without expander since we're already in one)
+        st.markdown("**🏆 Performance Ranking:**")
+        calculate_spider_ranking(indicators_data, all_cities, selected_indicators)
 
 def create_custom_spider_plot(indicators_data, cities, indicators):
     """Create a spider plot for custom indicators"""
