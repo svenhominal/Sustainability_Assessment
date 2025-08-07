@@ -36,6 +36,11 @@ def show_intro():
     This comprehensive tool helps evaluate and compare the sustainability performance of cities 
     across multiple dimensions including environmental, social, and economic factors.
     """)
+
+    st.write("""
+    **This tool is still in development, there could be some issues with the code and some new 
+    sections will be added soon.**
+    """)
     
     # Key features
     st.markdown('<h3 class="subsection-title">🎯 Key Features</h3>', unsafe_allow_html=True)
